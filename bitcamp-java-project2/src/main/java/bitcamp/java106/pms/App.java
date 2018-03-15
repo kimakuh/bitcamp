@@ -17,7 +17,7 @@ public class App {
             System.out.print("Command > ");
             String[] arr = keyScan.nextLine().toLowerCase().split(" ");
             // 입력 받은 문자열을 공백으로 잘라서 명령과 검색어로 구부한다.
-            String menu = arr[0];
+            String menu = arr[0]; //입력 값에서 검색어를 별도의 변수에 저장한다.
 
             if (menu.toLowerCase().equals("quit")) {
                 System.out.println("시스템 종료");
