@@ -26,6 +26,8 @@ public class Score3 {
     // => 이 인스턴스의 주소는 내장된 this라는 변수에 자동 복사된다.
     //    그래서 파라미터 대신 this를 사용하면 된다.
     // => 인스턴스 메서드는 static을 붙이지 않는다.
+    
+    
     public void calculate() {
         this.sum = this.kor + this.eng + this.math;
         this.average = this.sum / 3f;
