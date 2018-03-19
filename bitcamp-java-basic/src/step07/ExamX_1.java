@@ -1,8 +1,7 @@
-// 클래스 - 용도 
+// 클래스 용도 - 사용자 정의 데이터 타입을 만들 때 사용 
 package step07;
 
-
-public class Exam01_1 {
+public class ExamX_1 {
     public static void main(String[] args) {
         // 사용자 정의 데이터 타입을 사용하는 방법
         // => new 명령을 사용하여 설계도에 기술된 대로 메모리를 준비한다.
@@ -16,12 +15,11 @@ public class Exam01_1 {
         score.eng = 90;
         score.math = 85;
         score.sum = score.kor + score.eng + score.math;
-        score.average = (float)score.sum / 3f;
+        score.average = score.sum / 3f;
 
-
-
-        System.out.printf("%s, %d, %d, %d, %d, %.1f\n",
-                          score.name, score.kor, score.eng, score.math, score.sum, score.average);  
+        System.out.printf("%s, %d, %d, %d, %d, %.1f\n", 
+                score.name, score.kor, score.eng, score.math, 
+                score.sum, score.average);
     }
 }
 
