@@ -10,6 +10,7 @@ public class Score3 {
     int sum;
     float average;
     
+    
     public static void calculate(Score3 score) {
         score.sum = score.kor + score.eng + score.math;
         score.average = score.sum / 3f;
