@@ -11,9 +11,9 @@ public class Score3 {
     float average;
     
     
-    public static void calculate(Score3 score) {
-        score.sum = score.kor + score.eng + score.math;
-        score.average = score.sum / 3f;
+    public void calculate() {     
+        this.sum = this.kor + this.eng + this.math;
+        this.average = this.sum / 3f;        
         
     }
     
