@@ -1,3 +1,3 @@
 # 변경 내역
-- BoardDao.java 추가
 - BoardController.java 변경
+- TeamController.java 변경

@@ -3,8 +3,6 @@ package bitcamp.java106.pms.controller;
 
 import bitcamp.java106.pms.domain.Team;
 import bitcamp.java106.pms.util.Console;
-
-import java.sql.Date;
 import java.util.Scanner;
 
 public class TeamController {
@@ -61,10 +59,10 @@ public class TeamController {
         this.keyScan.nextLine(); 
 
         System.out.print("시작일? ");
-        team.startDate = Date.valueOf(this.keyScan.nextLine());
+        team.startDate = this.keyScan.nextLine();
 
         System.out.print("종료일? ");
-        team.endDate = Date.valueOf(this.keyScan.nextLine());
+        team.endDate = this.keyScan.nextLine();
 
         // 팀 정보가 담겨있는 객체의 주소를 배열에 보관한다.
         this.teams[this.teamIndex++] = team;
@@ -124,9 +122,9 @@ public class TeamController {
             updateTeam.maxQty = this.keyScan.nextInt();
             this.keyScan.nextLine();
             System.out.printf("시작일(%s)? ", team.startDate);
-            updateTeam.startDate = Date.valueOf(this.keyScan.nextLine());
+            updateTeam.startDate = this.keyScan.nextLine();
             System.out.printf("종료일(%s)? ", team.endDate);
-            updateTeam.endDate = Date.valueOf(this.keyScan.nextLine());
+            updateTeam.endDate = this.keyScan.nextLine();
             this.teams[i] = updateTeam;
             System.out.println("변경하였습니다.");
         }
@@ -152,5 +150,3 @@ public class TeamController {
     }
     
 }
-
-// ver 13 - 시작일, 종료일을 문자열로 입력 받아 Date 객체로 변환하여 저장.
