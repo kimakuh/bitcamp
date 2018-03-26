@@ -26,7 +26,7 @@ public class TeamDao {
     }
     
     public void update(Team team) {
-        int i = this.getTeamIndex(team.getName());
+        int i = this.getTeamIndex(team.name);
         if (i != -1)
             teams[i] = team;
     }
@@ -40,7 +40,7 @@ public class TeamDao {
     private int getTeamIndex(String name) {
         for (int i = 0; i < this.teamIndex; i++) {
             if (this.teams[i] == null) continue;
-            if (name.equals(this.teams[i].getName().toLowerCase())) {
+            if (name.equals(this.teams[i].name.toLowerCase())) {
                 return i;
             }
         }
@@ -49,7 +49,6 @@ public class TeamDao {
 
 }
 
-//ver 16 - 인스턴스 변수를 직접 사용하는 대신 겟터, 셋터 사용.
 //ver 14 - TeamController로부터 데이터 관리 기능을 분리하여 TeamDao 생성.
 
 

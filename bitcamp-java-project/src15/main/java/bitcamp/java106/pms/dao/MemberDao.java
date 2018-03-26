@@ -26,7 +26,7 @@ public class MemberDao {
     }
     
     public void update(Member member) {
-        int i = this.getMemberIndex(member.getId());
+        int i = this.getMemberIndex(member.id);
         if (i != -1)
             this.members[i] = member;
     }
@@ -41,7 +41,7 @@ public class MemberDao {
     private int getMemberIndex(String id) {
         for (int i = 0; i < this.memberIndex; i++) {
             if (this.members[i] == null) continue;
-            if (id.equals(this.members[i].getId().toLowerCase())) {
+            if (id.equals(this.members[i].id.toLowerCase())) {
                 return i;
             }
         }
@@ -51,7 +51,6 @@ public class MemberDao {
     
 }
 
-//ver 16 - 인스턴스 변수를 직접 사용하는 대신 겟터, 셋터 사용.
 //ver 14 - MemberController로부터 데이터 관리 기능을 분리하여 MemberDao 생성.
 
 

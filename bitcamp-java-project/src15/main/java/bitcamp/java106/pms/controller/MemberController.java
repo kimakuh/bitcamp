@@ -38,13 +38,13 @@ public class MemberController {
         Member member = new Member();
         
         System.out.print("아이디? ");
-        member.setId(this.keyScan.nextLine());
+        member.id = this.keyScan.nextLine();
 
         System.out.print("이메일? ");
-        member.setEmail(this.keyScan.nextLine());
+        member.email = this.keyScan.nextLine();
 
         System.out.print("암호? ");
-        member.setPassword(this.keyScan.nextLine());
+        member.password = this.keyScan.nextLine();
 
         memberDao.insert(member);
     }
@@ -55,7 +55,7 @@ public class MemberController {
         for (int i = 0; i < list.length; i++) {
             if (list[i] == null) continue;
             System.out.printf("%s, %s, %s\n", 
-                list[i].getId(), list[i].getEmail(), list[i].getPassword());
+                    list[i].id, list[i].email, list[i].password);
         }
     }
 
@@ -71,9 +71,9 @@ public class MemberController {
         if (member == null) {
             System.out.println("해당 아이디의 회원이 없습니다.");
         } else {
-            System.out.printf("아이디: %s\n", member.getId());
-            System.out.printf("이메일: %s\n", member.getEmail());
-            System.out.printf("암호: %s\n", member.getPassword());
+            System.out.printf("아이디: %s\n", member.id);
+            System.out.printf("이메일: %s\n", member.email);
+            System.out.printf("암호: %s\n", member.password);
         }
     }
 
@@ -90,12 +90,12 @@ public class MemberController {
             System.out.println("해당 아이디의 회원이 없습니다.");
         } else {
             Member updateMember = new Member();
-            System.out.printf("아이디: %s\n", member.getId());
-            updateMember.setId(member.getId());
-            System.out.printf("이메일(%s)? ", member.getEmail());
-            updateMember.setEmail(this.keyScan.nextLine());
+            System.out.printf("아이디: %s\n", member.id);
+            updateMember.id = member.id;
+            System.out.printf("이메일(%s)? ", member.email);
+            updateMember.email = this.keyScan.nextLine();
             System.out.printf("암호? ");
-            updateMember.setPassword(this.keyScan.nextLine());
+            updateMember.password = this.keyScan.nextLine();
             
             memberDao.update(updateMember);
             System.out.println("변경하였습니다.");
@@ -123,6 +123,5 @@ public class MemberController {
     
 }
 
-//ver 16 - 인스턴스 변수를 직접 사용하는 대신 겟터, 셋터 사용.
 // ver 15 - MemberDao를 생성자에서 주입 받도록 변경.
 // ver 14 - MemberDao를 사용하여 회원 데이터를 관리한다.
