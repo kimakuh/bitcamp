@@ -21,8 +21,3 @@ public class Console {
         return keyScan.nextLine().toLowerCase().split(" ");
     }
 }
-
-
-
-
-

@@ -1,6 +1,8 @@
 // 메서드 : 개념 및 기본 문법
 package step06;
 
+import java.util.Scanner;
+
 public class Exam02_1 {
 
     // 문법

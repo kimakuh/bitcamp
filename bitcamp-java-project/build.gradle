@@ -8,3 +8,15 @@ apply plugin: 'eclipse'
 
 // => 자바 관련 작업을 수행할 명령어가 들어 있는 플러그인
 apply plugin: 'java'
+
+// => Gradle의 소스 폴더 기본 경로(src/main/java)를 src 로 변경하라
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+        }
+    }
+}
