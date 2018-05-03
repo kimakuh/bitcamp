@@ -1,0 +1,2 @@
+// gradle에서 사용할 명령어가 들어 있는 gradle 플러그인을 가져온다.
+apply plugin: 'eclipse'

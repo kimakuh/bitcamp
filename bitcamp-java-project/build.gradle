@@ -9,14 +9,54 @@ apply plugin: 'eclipse'
 // => 자바 관련 작업을 수행할 명령어가 들어 있는 플러그인
 apply plugin: 'java'
 
-// => Gradle의 소스 폴더 기본 경로(src/main/java)를 src 로 변경하라
-sourceSets {
-    main {
-        java {
-            srcDir 'src'
-        }
-        resources {
-            srcDir 'src'
-        }
-    }
+// => web archive 파일을 다루는 명령어가 들어 있는 플러그인
+apply plugin: 'war'
+
+
+compileJava {
+    options.encoding = 'UTF-8'
 }
+
+
+war {
+    // war 파일을 생성할 때 사용할 파일명 설정하기
+    // => 파일명을 설정하지 않으면 프로젝트 네임으로 만들어진다.
+    archiveName = "pms.war"
+}
+
+
+task copyJars(type: Copy) {
+    from configurations.runtime
+    into "build/libs/deps"
+}
+
+
+
+// => 의존 라이브러리를 보관하고 있는 서버를 지정한다.
+repositories {
+    // https://repo.maven.apache.org/maven2/ 서버에서 다운로드 받는다.
+    mavenCentral() 
+}
+
+// => 다운로드할 의존 라이브러리를 지정한다.
+dependencies {
+    // MySQL JDBC Driver 라이브러리
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
+    
+    // Mybatis 라이브러리
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
+    
+    // Spring Ioc 컨테이너 라이브러리
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.5.RELEASE'
+    
+    // 서블릿 라이브러리
+    // => 어느 버전의 서블릿 규칙에 따라 만든 서버인지에 따라
+    //    그 버전의 라이브러이를 다운로드 받아야 한다.
+    // 
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    
+}
+
+
+
+

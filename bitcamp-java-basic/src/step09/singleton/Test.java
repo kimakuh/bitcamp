@@ -13,8 +13,8 @@ public class Test {
         
         System.out.println("----------------");
         
-        // Car2 클래스의 생성자를 접근할 수 없기 때문에 호출할 수 없다.
-        //Car2 x1 = new Car2(); // 컴파일 오류!
+        // Car 클래스의 생성자를 접근할 수 없기 때문에 호출할 수 없다.
+        //Car x1 = new Car(); // 컴파일 오류!
         
         Car2 x1 = Car2.getInstance();
         Car2 x2 = Car2.getInstance();

@@ -25,7 +25,7 @@ public class Exam03 {
            여러 줄 주석
            => 주석의 끝을 만날 때 까지 주석으로 간주한다.
         */
-        System.out.println("src/step01/Exam03");
+        System.out.println("src/step01/Exam01_4");
     }
 
     // 애노테이션(annotation)?
@@ -36,7 +36,7 @@ public class Exam03 {
     // 
     @Override
     public String toString() {
-        return "Exam03";
+        return "Exam01_4";
     }
 }
 
