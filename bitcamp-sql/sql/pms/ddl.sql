@@ -1,165 +1,167 @@
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 DROP TABLE IF EXISTS pms2_board RESTRICT;
 
--- È¸¿ø
+-- íšŒì›
 DROP TABLE IF EXISTS pms2_member RESTRICT;
 
--- ÆÀ
+-- íŒ€
 DROP TABLE IF EXISTS pms2_team RESTRICT;
 
--- ¼ö¾÷
+-- ìˆ˜ì—…
 DROP TABLE IF EXISTS pms2_classroom RESTRICT;
 
--- ÀÛ¾÷
+-- ì‘ì—…
 DROP TABLE IF EXISTS pms2_task RESTRICT;
 
--- ÆÀÈ¸¿ø
+-- íŒ€íšŒì›
 DROP TABLE IF EXISTS pms2_team_member RESTRICT;
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 CREATE TABLE pms2_board (
-	bno  INT          NOT NULL COMMENT '¹øÈ£', -- ¹øÈ£
-	titl VARCHAR(255) NOT NULL COMMENT 'Á¦¸ñ', -- Á¦¸ñ
-	cont TEXT         NULL     COMMENT '³»¿ë', -- ³»¿ë
-	cdt  DATETIME     NOT NULL COMMENT 'µî·ÏÀÏ' -- µî·ÏÀÏ
+    bno  INT          NOT NULL COMMENT 'ë²ˆí˜¸', -- ë²ˆí˜¸
+    titl VARCHAR(255) NOT NULL COMMENT 'ì œëª©', -- ì œëª©
+    cont TEXT         NULL     COMMENT 'ë‚´ìš©', -- ë‚´ìš©
+    cdt  DATETIME     NOT NULL COMMENT 'ë“±ë¡ì¼' -- ë“±ë¡ì¼
 )
-COMMENT '°Ô½ÃÆÇ';
+COMMENT 'ê²Œì‹œíŒ';
 
--- °Ô½ÃÆÇ
+
+
+-- ê²Œì‹œíŒ
 ALTER TABLE pms2_board
-	ADD CONSTRAINT PK_pms2_board -- °Ô½ÃÆÇ ±âº»Å°
-		PRIMARY KEY (
-			bno -- ¹øÈ£
-		);
+    ADD CONSTRAINT PK_pms2_board -- ê²Œì‹œíŒ ê¸°ë³¸í‚¤
+        PRIMARY KEY (
+            bno -- ë²ˆí˜¸
+        );
 
 ALTER TABLE pms2_board
-	MODIFY COLUMN bno INT NOT NULL AUTO_INCREMENT COMMENT '¹øÈ£';
+    MODIFY COLUMN bno INT NOT NULL AUTO_INCREMENT COMMENT 'ë²ˆí˜¸';
 
--- È¸¿ø
+-- íšŒì›
 CREATE TABLE pms2_member (
-	mid   VARCHAR(20)  NOT NULL COMMENT '¾ÆÀÌµğ', -- ¾ÆÀÌµğ
-	email VARCHAR(255) NOT NULL COMMENT 'ÀÌ¸ŞÀÏ', -- ÀÌ¸ŞÀÏ
-	pwd   VARCHAR(100) NOT NULL COMMENT '¾ÏÈ£' -- ¾ÏÈ£
+    mid   VARCHAR(20)  NOT NULL COMMENT 'ì•„ì´ë””', -- ì•„ì´ë””
+    email VARCHAR(255) NOT NULL COMMENT 'ì´ë©”ì¼', -- ì´ë©”ì¼
+    pwd   VARCHAR(100) NOT NULL COMMENT 'ì•”í˜¸' -- ì•”í˜¸
 )
-COMMENT 'È¸¿ø';
+COMMENT 'íšŒì›';
 
--- È¸¿ø
+-- íšŒì›
 ALTER TABLE pms2_member
-	ADD CONSTRAINT PK_pms2_member -- È¸¿ø ±âº»Å°
-		PRIMARY KEY (
-			mid -- ¾ÆÀÌµğ
-		);
+    ADD CONSTRAINT PK_pms2_member -- íšŒì› ê¸°ë³¸í‚¤
+        PRIMARY KEY (
+            mid -- ì•„ì´ë””
+        );
 
--- ÆÀ
+-- íŒ€
 CREATE TABLE pms2_team (
-	name    VARCHAR(100) NOT NULL COMMENT 'ÀÌ¸§', -- ÀÌ¸§
-	dscrt   TEXT         NULL     COMMENT '¼³¸í', -- ¼³¸í
-	max_pty INT          NOT NULL COMMENT 'ÃÖ´ëÀÎ¿ø', -- ÃÖ´ëÀÎ¿ø
-	sdt     DATETIME     NOT NULL COMMENT '½ÃÀÛÀÏ', -- ½ÃÀÛÀÏ
-	edt     DATETIME     NOT NULL COMMENT 'Á¾·áÀÏ' -- Á¾·áÀÏ
+    name    VARCHAR(100) NOT NULL COMMENT 'ì´ë¦„', -- ì´ë¦„
+    dscrt   TEXT         NULL     COMMENT 'ì„¤ëª…', -- ì„¤ëª…
+    max_qty INT          NOT NULL COMMENT 'ìµœëŒ€ì¸ì›', -- ìµœëŒ€ì¸ì›
+    sdt     DATETIME     NOT NULL COMMENT 'ì‹œì‘ì¼', -- ì‹œì‘ì¼
+    edt     DATETIME     NOT NULL COMMENT 'ì¢…ë£Œì¼' -- ì¢…ë£Œì¼
 )
-COMMENT 'ÆÀ';
+COMMENT 'íŒ€';
 
--- ÆÀ
+-- íŒ€
 ALTER TABLE pms2_team
-	ADD CONSTRAINT PK_pms2_team -- ÆÀ ±âº»Å°
-		PRIMARY KEY (
-			name -- ÀÌ¸§
-		);
+    ADD CONSTRAINT PK_pms2_team -- íŒ€ ê¸°ë³¸í‚¤
+        PRIMARY KEY (
+            name -- ì´ë¦„
+        );
 
--- ¼ö¾÷
+-- ìˆ˜ì—…
 CREATE TABLE pms2_classroom (
-	crno INT          NOT NULL COMMENT '¹øÈ£', -- ¹øÈ£
-	titl VARCHAR(255) NOT NULL COMMENT '¼ö¾÷¸í', -- ¼ö¾÷¸í
-	sdt  DATETIME     NOT NULL COMMENT '½ÃÀÛÀÏ', -- ½ÃÀÛÀÏ
-	edt  DATETIME     NOT NULL COMMENT 'Á¾·áÀÏ', -- Á¾·áÀÏ
-	room VARCHAR(50)  NULL     COMMENT '±³½Ç' -- ±³½Ç
+    crno INT          NOT NULL COMMENT 'ë²ˆí˜¸', -- ë²ˆí˜¸
+    titl VARCHAR(255) NOT NULL COMMENT 'ìˆ˜ì—…ëª…', -- ìˆ˜ì—…ëª…
+    sdt  DATETIME     NOT NULL COMMENT 'ì‹œì‘ì¼', -- ì‹œì‘ì¼
+    edt  DATETIME     NOT NULL COMMENT 'ì¢…ë£Œì¼', -- ì¢…ë£Œì¼
+    room VARCHAR(50)  NULL     COMMENT 'êµì‹¤' -- êµì‹¤
 )
-COMMENT '¼ö¾÷';
+COMMENT 'ìˆ˜ì—…';
 
--- ¼ö¾÷
+-- ìˆ˜ì—…
 ALTER TABLE pms2_classroom
-	ADD CONSTRAINT PK_pms2_classroom -- ¼ö¾÷ ±âº»Å°
-		PRIMARY KEY (
-			crno -- ¹øÈ£
-		);
+    ADD CONSTRAINT PK_pms2_classroom -- ìˆ˜ì—… ê¸°ë³¸í‚¤
+        PRIMARY KEY (
+            crno -- ë²ˆí˜¸
+        );
 
 ALTER TABLE pms2_classroom
-	MODIFY COLUMN crno INT NOT NULL AUTO_INCREMENT COMMENT '¹øÈ£';
+    MODIFY COLUMN crno INT NOT NULL AUTO_INCREMENT COMMENT 'ë²ˆí˜¸';
 
--- ÀÛ¾÷
+-- ì‘ì—…
 CREATE TABLE pms2_task (
-	tano INT          NOT NULL COMMENT '¹øÈ£', -- ¹øÈ£
-	titl VARCHAR(255) NOT NULL COMMENT 'ÀÛ¾÷¸í', -- ÀÛ¾÷¸í
-	sdt  DATETIME     NOT NULL COMMENT '½ÃÀÛÀÏ', -- ½ÃÀÛÀÏ
-	edt  DATETIME     NOT NULL COMMENT 'Á¾·áÀÏ', -- Á¾·áÀÏ
-	stat INT          NULL     COMMENT '»óÅÂ', -- »óÅÂ
-	mid  VARCHAR(20)  NOT NULL COMMENT 'ÀÛ¾÷ÀÚ', -- ÀÛ¾÷ÀÚ
-	tnm  VARCHAR(100) NOT NULL COMMENT 'ÆÀ¸í' -- ÆÀ¸í
+    tano INT          NOT NULL COMMENT 'ë²ˆí˜¸', -- ë²ˆí˜¸
+    titl VARCHAR(255) NOT NULL COMMENT 'ì‘ì—…ëª…', -- ì‘ì—…ëª…
+    sdt  DATETIME     NOT NULL COMMENT 'ì‹œì‘ì¼', -- ì‹œì‘ì¼
+    edt  DATETIME     NOT NULL COMMENT 'ì¢…ë£Œì¼', -- ì¢…ë£Œì¼
+    stat INT          NULL     COMMENT 'ìƒíƒœ', -- ìƒíƒœ
+    mid  VARCHAR(20)  NOT NULL COMMENT 'ì‘ì—…ì', -- ì‘ì—…ì
+    tnm  VARCHAR(100) NOT NULL COMMENT 'íŒ€ëª…' -- íŒ€ëª…
 )
-COMMENT 'ÀÛ¾÷';
+COMMENT 'ì‘ì—…';
 
--- ÀÛ¾÷
+-- ì‘ì—…
 ALTER TABLE pms2_task
-	ADD CONSTRAINT PK_pms2_task -- ÀÛ¾÷ ±âº»Å°
-		PRIMARY KEY (
-			tano -- ¹øÈ£
-		);
+    ADD CONSTRAINT PK_pms2_task -- ì‘ì—… ê¸°ë³¸í‚¤
+        PRIMARY KEY (
+            tano -- ë²ˆí˜¸
+        );
 
 ALTER TABLE pms2_task
-	MODIFY COLUMN tano INT NOT NULL AUTO_INCREMENT COMMENT '¹øÈ£';
+    MODIFY COLUMN tano INT NOT NULL AUTO_INCREMENT COMMENT 'ë²ˆí˜¸';
 
--- ÆÀÈ¸¿ø
+-- íŒ€íšŒì›
 CREATE TABLE pms2_team_member (
-	tnm VARCHAR(100) NOT NULL COMMENT 'ÆÀ¸í', -- ÆÀ¸í
-	mid VARCHAR(20)  NOT NULL COMMENT '¾ÆÀÌµğ' -- ¾ÆÀÌµğ
+    tnm VARCHAR(100) NOT NULL COMMENT 'íŒ€ëª…', -- íŒ€ëª…
+    mid VARCHAR(20)  NOT NULL COMMENT 'ì•„ì´ë””' -- ì•„ì´ë””
 )
-COMMENT 'ÆÀÈ¸¿ø';
+COMMENT 'íŒ€íšŒì›';
 
--- ÆÀÈ¸¿ø
+-- íŒ€íšŒì›
 ALTER TABLE pms2_team_member
-	ADD CONSTRAINT PK_pms2_team_member -- ÆÀÈ¸¿ø ±âº»Å°
-		PRIMARY KEY (
-			tnm, -- ÆÀ¸í
-			mid  -- ¾ÆÀÌµğ
-		);
+    ADD CONSTRAINT PK_pms2_team_member -- íŒ€íšŒì› ê¸°ë³¸í‚¤
+        PRIMARY KEY (
+            tnm, -- íŒ€ëª…
+            mid  -- ì•„ì´ë””
+        );
 
--- ÀÛ¾÷
+-- ì‘ì—…
 ALTER TABLE pms2_task
-	ADD CONSTRAINT FK_pms2_member_TO_pms2_task -- È¸¿ø -> ÀÛ¾÷
-		FOREIGN KEY (
-			mid -- ÀÛ¾÷ÀÚ
-		)
-		REFERENCES pms2_member ( -- È¸¿ø
-			mid -- ¾ÆÀÌµğ
-		);
+    ADD CONSTRAINT FK_pms2_member_TO_pms2_task -- íšŒì› -> ì‘ì—…
+        FOREIGN KEY (
+            mid -- ì‘ì—…ì
+        )
+        REFERENCES pms2_member ( -- íšŒì›
+            mid -- ì•„ì´ë””
+        );
 
--- ÀÛ¾÷
+-- ì‘ì—…
 ALTER TABLE pms2_task
-	ADD CONSTRAINT FK_pms2_team_TO_pms2_task -- ÆÀ -> ÀÛ¾÷
-		FOREIGN KEY (
-			tnm -- ÆÀ¸í
-		)
-		REFERENCES pms2_team ( -- ÆÀ
-			name -- ÀÌ¸§
-		);
+    ADD CONSTRAINT FK_pms2_team_TO_pms2_task -- íŒ€ -> ì‘ì—…
+        FOREIGN KEY (
+            tnm -- íŒ€ëª…
+        )
+        REFERENCES pms2_team ( -- íŒ€
+            name -- ì´ë¦„
+        );
 
--- ÆÀÈ¸¿ø
+-- íŒ€íšŒì›
 ALTER TABLE pms2_team_member
-	ADD CONSTRAINT FK_pms2_team_TO_pms2_team_member -- ÆÀ -> ÆÀÈ¸¿ø
-		FOREIGN KEY (
-			tnm -- ÆÀ¸í
-		)
-		REFERENCES pms2_team ( -- ÆÀ
-			name -- ÀÌ¸§
-		);
+    ADD CONSTRAINT FK_pms2_team_TO_pms2_team_member -- íŒ€ -> íŒ€íšŒì›
+        FOREIGN KEY (
+            tnm -- íŒ€ëª…
+        )
+        REFERENCES pms2_team ( -- íŒ€
+            name -- ì´ë¦„
+        );
 
--- ÆÀÈ¸¿ø
+-- íŒ€íšŒì›
 ALTER TABLE pms2_team_member
-	ADD CONSTRAINT FK_pms2_member_TO_pms2_team_member -- È¸¿ø -> ÆÀÈ¸¿ø
-		FOREIGN KEY (
-			mid -- ¾ÆÀÌµğ
-		)
-		REFERENCES pms2_member ( -- È¸¿ø
-			mid -- ¾ÆÀÌµğ
-		);
+    ADD CONSTRAINT FK_pms2_member_TO_pms2_team_member -- íšŒì› -> íŒ€íšŒì›
+        FOREIGN KEY (
+            mid -- ì•„ì´ë””
+        )
+        REFERENCES pms2_member ( -- íšŒì›
+            mid -- ì•„ì´ë””
+        );
