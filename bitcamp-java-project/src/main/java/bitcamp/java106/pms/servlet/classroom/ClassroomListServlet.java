@@ -46,12 +46,8 @@ public class ClassroomListServlet extends HttpServlet {
         out.println("<title>강의 목록</title>");
         out.println("</head>");
         out.println("<body>");
-        
         request.getRequestDispatcher("/header").include(request, response);
-        
         out.println("<h1>강의 목록</h1>");
-        
-        
         
         try {
             List<Classroom> list = classroomDao.selectList();
