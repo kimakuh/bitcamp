@@ -1,8 +1,10 @@
 package bitcamp.java106.pms.servlet.team;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +16,8 @@ import bitcamp.java106.pms.domain.Team;
 import bitcamp.java106.pms.support.WebApplicationContextUtils;
 
 @SuppressWarnings("serial")
-//@WebServlet("/team/view")
-public class TeamViewServlet01 extends HttpServlet {
+@WebServlet("/team/update")
+public class TeamUpdateServlet extends HttpServlet {
 
     TeamDao teamDao;
     
@@ -26,40 +28,43 @@ public class TeamViewServlet01 extends HttpServlet {
                         this.getServletContext()); 
         teamDao = iocContainer.getBean(TeamDao.class);
     }
-    
+
     @Override
-    protected void doGet(
+    protected void doPost(
             HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-
-        String name = request.getParameter("name");
         
         try {
-            Team team = teamDao.selectOne(name);
-            if (team == null) {
-                throw new Exception("유효하지 않은 팀입니다.");
-            }
-            request.setAttribute("team", team);
+            Team team = new Team();
+            team.setName(request.getParameter("name"));
+            team.setDescription(request.getParameter("description"));
+            team.setMaxQty(Integer.parseInt(request.getParameter("maxQty")));
+            team.setStartDate(Date.valueOf(request.getParameter("startDate")));
+            team.setEndDate(Date.valueOf(request.getParameter("endDate")));
             
-            response.setContentType("text/html;charset=UTF-8");
-            request.getRequestDispatcher("/team/view.jsp").include(request, response);
-               
+            int count = teamDao.update(team);
+            if (count == 0) {
+                throw new Exception("<p>해당 팀이 존재하지 않습니다.</p>");
+            }
+            request.setAttribute("viewUrl", "redirect:list.do");
+            
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "팀 상세조회 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e); 
         }
     }
+    
 }
 
+//ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.
 //         request.setCharacterEncoding("UTF-8") 제거
 //ver 39 - forward 적용
+//ver 38 - redirect 적용
 //ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
-//ver 26 - TeamController에서 view() 메서드를 추출하여 클래스로 정의.
+//ver 26 - TeamController에서 update() 메서드를 추출하여 클래스로 정의.
 //ver 23 - @Component 애노테이션을 붙인다.
 //ver 22 - TaskDao 변경 사항에 맞춰 이 클래스를 변경한다.
 //ver 18 - ArrayList가 적용된 TeamDao를 사용한다.
