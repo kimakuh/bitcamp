@@ -1,7 +1,6 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isErrorPage="true"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +10,9 @@
 <title>실행 오류</title>
 </head>
 <body>
-<h1>실행 오류!</h1>
+<h1><%=request.getAttribute("title")%>(MVC)</h1>
 <pre>
-<%=exception%>
+<%=request.getAttribute("error")%>
 </pre>
 </body>
 </html>
