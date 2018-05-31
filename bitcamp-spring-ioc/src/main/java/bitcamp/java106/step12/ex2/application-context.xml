@@ -14,6 +14,9 @@
 
 	<bean id="sqlSessionFactory"
 		class="bitcamp.java106.step12.ex2.SqlSessionFactoryBean"
+		
+		<property name="configLocation" value="bitcamp/java106/step12/ex2/mybatis-config.xml"></property>
+		
     </bean>
 </beans>
 
