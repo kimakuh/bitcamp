@@ -9,6 +9,8 @@ import bitcamp.java106.BeanUtils;
 public class Exam01 {
 
     public static void main(String[] args) {
+        Car c = CarFactory.create("티코");
+        
         ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
                 "bitcamp/java106/step06/application-context-01.xml");
         
