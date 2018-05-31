@@ -8,33 +8,16 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
     
-    <context:component-scan base-package="bitcamp.java106.step12.ex3"></context:component-scan>
+    <context:component-scan base-package="bitcamp.java106.step12.ex4"></context:component-scan>
 
-<!-- Mybatis SqlSessionFactory 준비하기 -->
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
-
-      <!-- mybatis를 스프링과 연동하면, 
-           DataSource는 스프링에서 관리하는 객체를 사용해야 한다.
-           mybatis가 만든 DataSource를 사용할 수 없다. -->
       <property name="dataSource" ref="dataSource" />
-      
-      <!-- SQL 맵퍼 파일이 있는 경로를 설정하면, 
-           SqlSessionFactory에서 그 경로에서 SQL 맵퍼 파일을 찾을 것이다. -->           
       <property name="mapperLocations" 
-                value="classpath*:bitcamp/java106/step12/ex3/*Mapper.xml" />  
-                
-      <!-- Board 클래스 처럼 데이터를 담는 객체(Value Object = Domain Object)의 
-           별명을 자동으로 등록하기
-           => 패키지를 지정하면 그 패키지에 있는 모든 클래스에 대해 
-              클래스 이름을 별명으로 자동 부여한다. 
-            -->
+                value="classpath*:bitcamp/java106/step12/ex4/*Mapper.xml" />  
       <property name="typeAliases" value="bitcamp.java106.step12.Board"/>   
     </bean>
     
-<!-- mybatis가 사용할 DataSource 객체 준비하기 
-      => BasicDataSource 클래스가 들어 있는 apache-commons-dbcp 라이브러리를 추가해야 한다.
--->
 	<bean id="dataSource" 
 	      class="org.apache.commons.dbcp.BasicDataSource" 
 	      destroy-method="close">
@@ -44,9 +27,17 @@
 	    <property name="password" value="${jdbc.password}" />
 	</bean>
 	
-<!-- 스프링 설정 파일에서 사용할 .properties 파일을 로딩하는 객체 준비 -->
     <context:property-placeholder 
         location="bitcamp/java106/step12/jdbc.properties"/>	
+        
+<!-- DAO 구현체를 자동으로 만들어 주는 객체를 준비
+     => 개발자는 DAO를 직접 구현할 필요가 없다.
+     => 단지 인터페이스만 선언하면 된다.
+ -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- DAO 인터페이스가 선언된 패키지를 지정한다. -->
+	    <property name="basePackage" value="bitcamp.java106.step12.ex4" />
+	</bean>    
 </beans>
 
 
