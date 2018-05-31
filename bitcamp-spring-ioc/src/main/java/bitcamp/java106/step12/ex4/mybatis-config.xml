@@ -11,7 +11,7 @@
 
 
   <mappers>
-    <mapper resource="bitcamp/java106/step12/ex3/BoardMapper.xml"/>
+    <mapper resource="bitcamp/java106/step12/ex4/BoardMapper.xml"/>
   </mappers>
 </configuration>
 
