@@ -1,7 +1,7 @@
 plugins {
     id 'java'
+    id 'eclipse-wtp'
     id 'application'
-    id 'eclipse'
 }
 
 // 소스 파일에서 사용하는 문자표(characterset)를 지정한다.
