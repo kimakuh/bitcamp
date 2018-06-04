@@ -89,6 +89,10 @@ public class TeamController {
         return "/team/view.jsp";
     }
     
+    // GlobalBindingInitializer 등록했기 때문에
+    // 이 클래스에서는 제외한다.
+    
+    /*
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(
@@ -100,6 +104,7 @@ public class TeamController {
                     }
                 });
     }
+    */
     
 }
 
