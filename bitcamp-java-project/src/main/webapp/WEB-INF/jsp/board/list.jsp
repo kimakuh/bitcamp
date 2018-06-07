@@ -18,10 +18,10 @@
 <tr>
     <th>번호</th><th>제목</th><th>등록일</th>
 </tr>
-<c:forEach items="${list}" var="board">
+<c:forEach items="${list}" var="board">            
 <tr>
     <td>${board.no}</td>
-    <td><a href='view/${board.no}'>${board.title}</a></td>
+    <td><a href='${board.no}'>${board.title}</a></td>
     <td>${board.createdDate}</td>
 </tr>
 </c:forEach>

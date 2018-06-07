@@ -27,10 +27,8 @@ public class AuthController {
     
     @RequestMapping("/form")
     public void form() {
-        
     }
-    
-
+            
     @RequestMapping("/login")
     public String login(
             @RequestParam("id") String id,
