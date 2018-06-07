@@ -44,7 +44,7 @@ public class TeamMemberController {
         Member member = memberDao.selectOne(memberId);
         if (member == null) {
             map.put("message", "해당 회원이 없습니다!");
-            return "/team/member/fail.jsp";
+            return "/team/member/fail";
         }
         
         HashMap<String,Object> params = new HashMap<>();
@@ -53,10 +53,10 @@ public class TeamMemberController {
         
         if (teamMemberDao.isExist(params)) {
             map.put("message", "이미 등록된 회원입니다.");
-            return "/team/member/fail.jsp";
+            return "/team/member/fail";
         }
         teamMemberDao.insert(params);
-        return "redirect:../view.do?name=" + 
+        return "redirect:../view?name=" + 
                 URLEncoder.encode(teamName, "UTF-8");
     }
     
@@ -82,16 +82,16 @@ public class TeamMemberController {
     }
     
     @RequestMapping("/list")
-    public String list(
+    public void list(
             @RequestParam("name") String teamName,
             Map<String,Object> map) throws Exception {
        
         List<Member> members = teamMemberDao.selectListWithEmail(teamName);
         map.put("members", members);
-        return "/team/member/list.jsp";
     }
 }
 
+//ver 52 - InternalResourceViewResolver 적용
 //ver 51 - Spring WebMVC 적용
 //ver 50 - DAO 변경에 맞춰 메서드 호출 변경
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
