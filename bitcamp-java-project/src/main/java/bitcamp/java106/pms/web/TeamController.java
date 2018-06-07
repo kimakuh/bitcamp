@@ -31,18 +31,18 @@ public class TeamController {
         this.taskDao = taskDao;
     }
     
-    @RequestMapping("/form")
+    @RequestMapping("form")
     public void form() {
     }
     
-    @RequestMapping("/add")
+    @RequestMapping("add")
     public String add(Team team) throws Exception {
         
         teamDao.insert(team);
         return "redirect:list";
     }
     
-    @RequestMapping("/delete")
+    @RequestMapping("delete")
     public String delete(@RequestParam("name") String name) throws Exception {
         
         HashMap<String,Object> params = new HashMap<>();
@@ -60,14 +60,14 @@ public class TeamController {
         return "redirect:list";
     }
     
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public void list(Map<String,Object> map) throws Exception {
         
         List<Team> list = teamDao.selectList();
         map.put("list", list);
     }
     
-    @RequestMapping("/update")
+    @RequestMapping("update")
     public String update(Team team) throws Exception {
         
         int count = teamDao.update(team);
@@ -77,7 +77,7 @@ public class TeamController {
         return "redirect:list";
     }
     
-    @RequestMapping("/view/{name}")
+    @RequestMapping("{name}")
     public String view(
             @PathVariable String name,
             Map<String,Object> map) throws Exception {
@@ -107,6 +107,7 @@ public class TeamController {
 }
 
 //ver 52 - InternalResourceViewResolver 적용
+//         *.do 대신 /app/* 을 기준으로 URL 변경
 //ver 51 - Spring WebMVC 적용
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
 //ver 48 - CRUD 기능을 한 클래스에 합치기

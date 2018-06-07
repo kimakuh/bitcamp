@@ -1,6 +1,5 @@
 package bitcamp.java106.pms.web;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,7 @@ import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
 
 @Controller
-@RequestMapping("/task")
+@RequestMapping("/team/{teamName}/task")
 public class TaskController {
     
     TeamDao teamDao;
@@ -33,10 +32,10 @@ public class TaskController {
         this.teamMemberDao = teamMemberDao;
     }
     
-    @RequestMapping("/add")
+    @RequestMapping("add")
     public String add(
             Task task,
-            @RequestParam("teamName") String teamName,
+            @PathVariable String teamName,
             @RequestParam("memberId") String memberId) throws Exception {
         
         task.setTeam(new Team().setName(teamName));
@@ -57,13 +56,13 @@ public class TaskController {
         }
         
         taskDao.insert(task);
-        return "redirect:list?teamName=" + URLEncoder.encode(teamName, "UTF-8");
+        return "redirect:list";
         // 응답 헤더의 값으로 한글을 포함할 때는 
         // 서블릿 컨테이너가 자동으로 URL 인코딩 하지 않는다.
         // 위와 같이 개발자가 직접 URL 인코딩 해야 한다.
     }
     
-    @RequestMapping("/delete")
+    @RequestMapping("delete")
     public String delete(
             @RequestParam("no") int no,
             @RequestParam("teamName") String teamName) throws Exception {
@@ -72,15 +71,15 @@ public class TaskController {
         if (count == 0) {
             throw new Exception("해당 작업이 존재하지 않습니다.");
         }
-        return "redirect:list?teamName=" + URLEncoder.encode(teamName, "UTF-8");
+        return "redirect:list";
         // 응답 헤더의 값으로 한글을 포함할 때는 
         // 서블릿 컨테이너가 자동으로 URL 인코딩 하지 않는다.
         // 위와 같이 개발자가 직접 URL 인코딩 해야 한다.
     }
     
-    @RequestMapping("/form")
-    public void form(
-            @RequestParam("teamName") String teamName,
+    @RequestMapping("form")
+    public String form(
+            @PathVariable String teamName,
             Map<String,Object> map) throws Exception {
         
         Team team = teamDao.selectOne(teamName);
@@ -89,11 +88,13 @@ public class TaskController {
         }
         List<Member> members = teamMemberDao.selectListWithEmail(teamName);
         map.put("members", members);
+        map.put("teamName", teamName);
+        return "task/form";
     }
     
-    @RequestMapping("/list")
-    public void list(
-            @RequestParam("teamName") String teamName,
+    @RequestMapping("list")
+    public String list(
+            @PathVariable String teamName,
             Map<String,Object> map) throws Exception {
         
         Team team = teamDao.selectOne(teamName);
@@ -102,9 +103,11 @@ public class TaskController {
         }
         List<Task> list = taskDao.selectList(team.getName());
         map.put("list", list);
+        map.put("teamName", teamName);
+        return "task/list";
     }
     
-    @RequestMapping("/update")
+    @RequestMapping("update")
     public String update(
             Task task,
             @RequestParam("teamName") String teamName,
@@ -117,14 +120,15 @@ public class TaskController {
         if (count == 0) {
             throw new Exception("<p>해당 작업이 없습니다.</p>");
         }
-        return "redirect:list?teamName=" + URLEncoder.encode(teamName, "UTF-8");
+        return "redirect:list";
             // 응답 헤더의 값으로 한글을 포함할 때는 
             // 서블릿 컨테이너가 자동으로 URL 인코딩 하지 않는다.
             // 위와 같이 개발자가 직접 URL 인코딩 해야 한다.
     }
     
-    @RequestMapping("/view/{no}")
+    @RequestMapping("{no}")
     public String view(
+            @PathVariable String teamName,
             @PathVariable int no,
             Map<String,Object> map) throws Exception {
         
@@ -138,6 +142,7 @@ public class TaskController {
         
         map.put("task", task);
         map.put("members", members);
+        map.put("teamName", teamName);
         return "task/view";
     }
     
@@ -158,6 +163,7 @@ public class TaskController {
 }
 
 //ver 52 - InternalResourceViewResolver 적용
+//         *.do 대신 /app/* 을 기준으로 URL 변경
 //ver 51 - Spring WebMVC 적용
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
 //ver 48 - CRUD 기능을 한 클래스에 합치기
