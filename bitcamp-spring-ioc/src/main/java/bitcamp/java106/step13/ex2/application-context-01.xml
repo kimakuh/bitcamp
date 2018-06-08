@@ -20,9 +20,9 @@
 	<aop:config>
 		<aop:aspect id="aspect1" ref="myAdvice">
 			<aop:pointcut id="pointcut1"
-				expression="excution(* bitcamp.java106.step13.ex2.*.*(..))" />
+				expression="execution(* bitcamp.java106.step13.ex2.X.*(..))" />
 
-			<aop:before pointcut-ref="pointcut1" method="advice1"  />
+			<aop:after pointcut-ref="pointcut1" method="advice1"  />
 		</aop:aspect>
 	</aop:config>
 
