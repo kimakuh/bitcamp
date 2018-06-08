@@ -22,7 +22,7 @@ public class Exam01 {
         
         //1) 게시물 입력
         Board board = new Board();
-        board.setTitle("hekll.");
+        board.setTitle("제목입니다.");
         board.setContent("내용입니다.");
         boardDao.insert(board);
         
