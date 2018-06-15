@@ -19,7 +19,7 @@ public class Exam01 {
         w3.execute();
         
         // 역할?
-        // caller : Exam01_1
+        // caller : Exam01
         // callee : BlueWorker, WhiteWorker, JubuWorker
         // 규칙: Worker
         
