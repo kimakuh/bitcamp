@@ -33,6 +33,16 @@ dependencies {
     
     compile 'com.google.guava:guava:23.0'
     testCompile 'junit:junit:4.12'
+    
+    
+    
+    // JSON 관련 Jackson 라이브러리
+    // - 다음의 경우에 사용하는 라이브러리이다. 
+    // - 요청 데이터(JSON 문자열) ==> 자바 객체
+    // - 자바 객체 ==> 응답 데이터(JSON 문자열) 
+    //  
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.3'
+    
 }
 
 repositories {
